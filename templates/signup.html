@@ -1,0 +1,350 @@
+{% extends "base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block extra_style %}
+  .register-page {
+    min-height: calc(100vh - 64px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .reg-visual {
+    position: relative;
+    background-image: url('https://images.unsplash.com/photo-1494172961521-33799ddd43a5?w=1000&q=80&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
+
+  .reg-visual-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(193,125,92,0.82) 0%, rgba(45,45,45,0.65) 100%);
+  }
+
+  .reg-visual-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem;
+    color: white;
+  }
+
+  .reg-visual-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+  }
+
+  .reg-visual-content p {
+    font-size: 1rem;
+    opacity: 0.75;
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 340px;
+  }
+
+  .steps-list {
+    margin-top: 2.5rem;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .step-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 0.875rem;
+    opacity: 0.88;
+  }
+
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .reg-form-side {
+    background: var(--warm-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    overflow-y: auto;
+  }
+
+  .reg-form-wrapper {
+    width: 100%;
+    max-width: 460px;
+    padding: 1rem 0;
+  }
+
+  .form-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 0.75rem;
+  }
+
+  .form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+  }
+
+  .form-subtitle {
+    font-size: 0.875rem;
+    color: var(--light-gray);
+    margin-bottom: 2rem;
+  }
+
+  .fields-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .field-group { margin-bottom: 1.15rem; }
+
+  .field-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    display: block;
+    margin-bottom: 0.45rem;
+  }
+
+  .field-input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1.5px solid var(--sand);
+    border-radius: 8px;
+    background: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    color: var(--charcoal);
+    transition: all 0.2s;
+    outline: none;
+  }
+
+  .field-input:focus {
+    border-color: var(--terra);
+    box-shadow: 0 0 0 3px rgba(193,125,92,0.1);
+  }
+
+  .field-input::placeholder { color: #BDBDBD; }
+
+  .field-hint {
+    font-size: 0.72rem;
+    color: var(--light-gray);
+    margin-top: 0.35rem;
+  }
+
+  .input-with-toggle { position: relative; }
+  .input-with-toggle .field-input { padding-right: 3rem; }
+
+  .toggle-btn {
+    position: absolute;
+    right: 0.875rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--light-gray);
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0;
+    transition: color 0.2s;
+  }
+
+  .toggle-btn:hover { color: var(--charcoal); }
+
+  .field-select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1.5px solid var(--sand);
+    border-radius: 8px;
+    background: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    color: var(--charcoal);
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B6B6B' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+  }
+
+  .field-select:focus {
+    border-color: var(--terra);
+    box-shadow: 0 0 0 3px rgba(193,125,92,0.1);
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 0.9rem;
+    background: var(--terra);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 0.75rem;
+    transition: all 0.25s ease;
+  }
+
+  .submit-btn:hover {
+    background: var(--terra-dark);
+    box-shadow: 0 6px 20px rgba(193,125,92,0.35);
+    transform: translateY(-1px);
+  }
+
+  .form-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--mid-gray);
+  }
+
+  .form-footer a {
+    color: var(--terra-dark);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .form-footer a:hover { text-decoration: underline; }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--sand);
+    margin: 1.25rem 0;
+  }
+{% endblock %}
+
+{% block register %}
+<div class="register-page">
+  <!-- Visual Side -->
+  <div class="reg-visual">
+    <div class="reg-visual-overlay"></div>
+    <div class="reg-visual-content">
+      <h2>Join the<br>Democratic Process.</h2>
+      <p>Register to vote and make your voice count in your institution's elections.</p>
+      <ul class="steps-list">
+        <li class="step-item"><span class="step-num">1</span> Create your voter account</li>
+        <li class="step-item"><span class="step-num">2</span> Browse open positions</li>
+        <li class="step-item"><span class="step-num">3</span> Cast your vote securely</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Form Side -->
+  <div class="reg-form-side">
+    <div class="reg-form-wrapper">
+      <p class="form-eyebrow">Create Account</p>
+      <h1 class="form-title">Register Here</h1>
+      <p class="form-subtitle">Fill in your details to create your voter profile.</p>
+
+      <form method="POST">
+        {% csrf_token %}
+
+        <div class="field-group">
+          <label class="field-label" for="name">Username</label>
+          <input id="name" type="text" class="field-input" name="username" placeholder="Full name or username" required>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="email">Email Address</label>
+          <input id="email" type="email" class="field-input" name="email" placeholder="you@institution.edu" required>
+        </div>
+
+        <hr class="divider">
+
+        <div class="field-group">
+          <label class="field-label" for="pass">Password</label>
+          <div class="input-with-toggle">
+            <input id="pass" type="password" class="field-input" name="password" placeholder="Create a password" required>
+            <button class="toggle-btn" type="button" onclick="togglePass('pass','eye1')">
+              <i class="fa-solid fa-eye" id="eye1"></i>
+            </button>
+          </div>
+          <p class="field-hint">8–20 characters, with a digit & special character.</p>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="pass2">Confirm Password</label>
+          <div class="input-with-toggle">
+            <input id="pass2" type="password" class="field-input" name="password2" placeholder="Repeat password" required>
+            <button class="toggle-btn" type="button" onclick="togglePass('pass2','eye2')">
+              <i class="fa-solid fa-eye" id="eye2"></i>
+            </button>
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="fields-row">
+          <div class="field-group">
+            <label class="field-label" for="phone">Phone Number</label>
+            <input id="phone" type="tel" class="field-input" name="phoneno" placeholder="+91 XXXXX XXXXX" required>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="vote_ID">Voter Type</label>
+            <select class="field-select" name="regtype" id="vote_ID">
+              <option value="student">Student</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Create Account &rarr;</button>
+      </form>
+
+      <p class="form-footer">
+        Already registered? <a href="{% url 'login' %}">Sign in here</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function togglePass(id, iconId) {
+    const f = document.getElementById(id);
+    const icon = document.getElementById(iconId);
+    if (f.type === "password") {
+      f.type = "text";
+      icon.className = "fa-solid fa-eye-slash";
+    } else {
+      f.type = "password";
+      icon.className = "fa-solid fa-eye";
+    }
+  }
+</script>
+{% endblock %}

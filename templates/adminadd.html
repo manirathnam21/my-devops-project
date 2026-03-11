@@ -1,0 +1,250 @@
+{% extends "base.html" %}
+
+{% block title %}Add Position{% endblock %}
+
+{% block extra_style %}
+  .admin-page {
+    min-height: calc(100vh - 64px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .admin-visual {
+    position: relative;
+    background-image: url('https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=1000&q=80&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
+
+  .admin-visual-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(45,45,45,0.8) 0%, rgba(122,158,135,0.6) 100%);
+  }
+
+  .admin-visual-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem;
+    color: white;
+  }
+
+  .admin-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: rgba(201,168,76,0.25);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: rgba(255,255,255,0.9);
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    margin-bottom: 1.75rem;
+    width: fit-content;
+  }
+
+  .admin-visual-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+  }
+
+  .admin-visual-content p {
+    font-size: 0.95rem;
+    opacity: 0.72;
+    line-height: 1.75;
+    font-weight: 300;
+    max-width: 360px;
+  }
+
+  .tip-box {
+    margin-top: 2.5rem;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+
+  .tip-box p {
+    font-size: 0.82rem;
+    opacity: 0.85;
+    margin: 0;
+  }
+
+  .tip-box strong {
+    color: rgba(201,168,76,0.9);
+    font-weight: 600;
+  }
+
+  .admin-form-side {
+    background: var(--warm-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+  }
+
+  .admin-form-wrapper {
+    width: 100%;
+    max-width: 460px;
+  }
+
+  .form-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+  }
+
+  .form-subtitle {
+    font-size: 0.875rem;
+    color: var(--light-gray);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+
+  .field-group { margin-bottom: 1.5rem; }
+
+  .field-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .field-input {
+    width: 100%;
+    padding: 0.85rem 1.1rem;
+    border: 1.5px solid var(--sand);
+    border-radius: 8px;
+    background: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--charcoal);
+    transition: all 0.2s;
+    outline: none;
+  }
+
+  .field-input:focus {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
+  }
+
+  .field-input::placeholder { color: #BDBDBD; }
+
+  .field-hint {
+    font-size: 0.72rem;
+    color: var(--light-gray);
+    margin-top: 0.4rem;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 0.95rem;
+    background: var(--charcoal);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: all 0.25s ease;
+  }
+
+  .submit-btn:hover {
+    background: #444;
+    box-shadow: 0 6px 20px rgba(45,45,45,0.25);
+    transform: translateY(-1px);
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--light-gray);
+    text-decoration: none;
+    margin-top: 1.5rem;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover { color: var(--charcoal); }
+{% endblock %}
+
+{% block adminadd %}
+<div class="admin-page">
+  <!-- Visual Side -->
+  <div class="admin-visual">
+    <div class="admin-visual-overlay"></div>
+    <div class="admin-visual-content">
+      <span class="admin-badge"><i class="bi bi-shield-lock"></i> Admin Panel</span>
+      <h2>Manage Election Positions</h2>
+      <p>Define the election positions and add candidates for each role. Students will be able to vote once positions are published.</p>
+      <div class="tip-box">
+        <p><strong>Tip:</strong> Separate candidate names with commas. For example: <em>John Doe, Jane Smith, Alex Johnson</em></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Side -->
+  <div class="admin-form-side">
+    <div class="admin-form-wrapper">
+      <p class="form-eyebrow">Admin Control</p>
+      <h1 class="form-title">Add New Position</h1>
+      <p class="form-subtitle">Create a new election position and list the candidates who are running for it.</p>
+
+      <form method="post" action="#">
+        {% csrf_token %}
+
+        <div class="field-group">
+          <label class="field-label" for="position_name">Position Name</label>
+          <input type="text" class="field-input" id="position_name" name="position_name" placeholder="e.g. Student Body President">
+          <p class="field-hint">Use the official title of the position.</p>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="candidate_names">Candidate Names</label>
+          <input type="text" class="field-input" id="candidate_names" name="candidate_names" placeholder="e.g. John Doe, Jane Smith, Alex Johnson">
+          <p class="field-hint">Enter names separated by commas.</p>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          <i class="bi bi-plus-circle me-2"></i> Add Position
+        </button>
+      </form>
+
+      <a href="{% url 'home' %}" class="back-link">
+        <i class="bi bi-arrow-left"></i> Back to Dashboard
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

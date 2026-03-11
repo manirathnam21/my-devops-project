@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Position{% endblock %}
+
+{% block extra_style %}
+  .delete-page {
+    min-height: calc(100vh - 64px);
+    background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1800&q=75&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .delete-page-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(250,247,242,0.88);
+    backdrop-filter: blur(4px);
+  }
+
+  .delete-card {
+    position: relative;
+    z-index: 2;
+    background: white;
+    border: 1px solid var(--sand);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 480px;
+    padding: 3rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    text-align: center;
+  }
+
+  .delete-icon-wrap {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(193,125,92,0.1);
+    border: 2px solid rgba(193,125,92,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.75rem;
+    font-size: 1.75rem;
+    color: var(--terra);
+  }
+
+  .delete-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 0.75rem;
+  }
+
+  .delete-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.3px;
+  }
+
+  .delete-message {
+    font-size: 0.95rem;
+    color: var(--mid-gray);
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .position-highlight {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    background: var(--cream);
+    border: 1px solid var(--sand);
+    border-radius: 8px;
+    padding: 0.75rem 1.25rem;
+    margin: 1.25rem 0 2rem;
+    display: block;
+  }
+
+  .warning-note {
+    font-size: 0.78rem;
+    color: var(--terra);
+    background: rgba(193,125,92,0.07);
+    border: 1px solid rgba(193,125,92,0.18);
+    border-radius: 7px;
+    padding: 0.7rem 1rem;
+    margin-bottom: 2rem;
+    text-align: left;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  .btn-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .btn-confirm-delete {
+    padding: 0.9rem;
+    background: var(--terra);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+
+  .btn-confirm-delete:hover {
+    background: var(--terra-dark);
+    box-shadow: 0 6px 20px rgba(193,125,92,0.35);
+    transform: translateY(-1px);
+  }
+
+  .btn-cancel {
+    padding: 0.9rem;
+    background: transparent;
+    color: var(--mid-gray);
+    border: 1.5px solid var(--sand);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .btn-cancel:hover {
+    border-color: var(--taupe);
+    color: var(--charcoal);
+  }
+{% endblock %}
+
+{% block delete %}
+<div class="delete-page">
+  <div class="delete-page-overlay"></div>
+
+  <div class="delete-card">
+    <div class="delete-icon-wrap">
+      <i class="bi bi-trash3"></i>
+    </div>
+
+    <p class="delete-eyebrow">Irreversible Action</p>
+    <h1 class="delete-title">Delete Position</h1>
+    <p class="delete-message">You are about to permanently delete the following election position:</p>
+
+    <span class="position-highlight">{{ position.name }}</span>
+
+    <div class="warning-note">
+      <i class="bi bi-exclamation-triangle-fill" style="flex-shrink:0; margin-top:2px;"></i>
+      <span>This will also delete all associated candidates and their vote data. This action cannot be undone.</span>
+    </div>
+
+    <div class="btn-row">
+      <a href="{% url 'home' %}" class="btn-cancel">
+        <i class="bi bi-arrow-left me-1"></i> Go Back
+      </a>
+      <form method="post" style="display:contents">
+        {% csrf_token %}
+        <button type="submit" class="btn-confirm-delete">
+          <i class="bi bi-trash me-1"></i> Yes, Delete
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

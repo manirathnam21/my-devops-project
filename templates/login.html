@@ -1,0 +1,297 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block extra_style %}
+  .auth-page {
+    min-height: calc(100vh - 64px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .auth-visual {
+    position: relative;
+    overflow: hidden;
+    background-image: url('https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=1000&q=80&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .auth-visual-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(122,158,135,0.85) 0%, rgba(45,45,45,0.7) 100%);
+  }
+
+  .auth-visual-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem;
+    color: white;
+  }
+
+  .auth-visual-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.5px;
+  }
+
+  .auth-visual-content p {
+    font-size: 1rem;
+    opacity: 0.75;
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 380px;
+  }
+
+  .auth-feature-list {
+    margin-top: 2.5rem;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .auth-feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.875rem;
+    opacity: 0.85;
+  }
+
+  .auth-feature-list li i {
+    width: 28px;
+    height: 28px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .auth-form-side {
+    background: var(--warm-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+  }
+
+  .auth-form-wrapper {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .form-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--moss-dark);
+    margin-bottom: 0.75rem;
+  }
+
+  .form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+  }
+
+  .form-subtitle {
+    font-size: 0.875rem;
+    color: var(--light-gray);
+    margin-bottom: 2.5rem;
+  }
+
+  .field-group {
+    margin-bottom: 1.25rem;
+  }
+
+  .field-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .field-input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1.5px solid var(--sand);
+    border-radius: 8px;
+    background: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--charcoal);
+    transition: all 0.2s;
+    outline: none;
+  }
+
+  .field-input:focus {
+    border-color: var(--moss);
+    box-shadow: 0 0 0 3px rgba(122,158,135,0.12);
+  }
+
+  .field-input::placeholder { color: #BDBDBD; }
+
+  .input-with-toggle {
+    position: relative;
+  }
+
+  .input-with-toggle .field-input {
+    padding-right: 3rem;
+  }
+
+  .toggle-btn {
+    position: absolute;
+    right: 0.875rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--light-gray);
+    cursor: pointer;
+    font-size: 0.95rem;
+    padding: 0;
+    transition: color 0.2s;
+  }
+
+  .toggle-btn:hover { color: var(--charcoal); }
+
+  .submit-btn {
+    width: 100%;
+    padding: 0.9rem;
+    background: var(--moss);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: all 0.25s ease;
+  }
+
+  .submit-btn:hover {
+    background: var(--moss-dark);
+    box-shadow: 0 6px 20px rgba(92,122,104,0.35);
+    transform: translateY(-1px);
+  }
+
+  .form-footer {
+    text-align: center;
+    margin-top: 1.75rem;
+    font-size: 0.875rem;
+    color: var(--mid-gray);
+  }
+
+  .form-footer a {
+    color: var(--moss-dark);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .form-footer a:hover { text-decoration: underline; }
+
+  .alert-custom {
+    background: rgba(193,125,92,0.08);
+    border: 1px solid rgba(193,125,92,0.25);
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--terra-dark);
+  }
+{% endblock %}
+
+{% block login %}
+<div class="auth-page">
+  <!-- Visual Side -->
+  <div class="auth-visual">
+    <div class="auth-visual-overlay"></div>
+    <div class="auth-visual-content">
+      <h2>Your Voice<br>Matters.</h2>
+      <p>Log in to participate in your institution's elections and help shape the future.</p>
+      <ul class="auth-feature-list">
+        <li><i class="bi bi-shield-check"></i> Secure, anonymous voting</li>
+        <li><i class="bi bi-clock-history"></i> Real-time results tracking</li>
+        <li><i class="bi bi-person-badge"></i> One vote per verified student</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Form Side -->
+  <div class="auth-form-side">
+    <div class="auth-form-wrapper">
+      {% if messages %}
+      <div class="alert-custom">
+        {% for message in messages %}{{ message }}{% endfor %}
+      </div>
+      {% endif %}
+
+      <p class="form-eyebrow">Welcome Back</p>
+      <h1 class="form-title">Sign In</h1>
+      <p class="form-subtitle">Enter your credentials to access the voting portal.</p>
+
+      <form method="POST">
+        {% csrf_token %}
+
+        <div class="field-group">
+          <label class="field-label" for="username">Username</label>
+          <input id="username" type="text" class="field-input" name="username" placeholder="Your username" required>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="password">Password</label>
+          <div class="input-with-toggle">
+            <input id="password" type="password" class="field-input" name="password" placeholder="Your password" required>
+            <button class="toggle-btn" type="button" onclick="togglePass()">
+              <i class="fa-solid fa-eye" id="eye-icon"></i>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Sign In &rarr;</button>
+      </form>
+
+      <p class="form-footer">
+        Don't have an account? <a href="{% url 'signup' %}">Register here</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function togglePass() {
+    const f = document.getElementById("password");
+    const icon = document.getElementById("eye-icon");
+    if (f.type === "password") {
+      f.type = "text";
+      icon.className = "fa-solid fa-eye-slash";
+    } else {
+      f.type = "password";
+      icon.className = "fa-solid fa-eye";
+    }
+  }
+</script>
+{% endblock %}

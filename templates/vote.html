@@ -1,0 +1,256 @@
+{% extends "base.html" %}
+
+{% block title %}Cast Your Vote{% endblock %}
+
+{% block extra_style %}
+  .vote-page {
+    min-height: calc(100vh - 64px);
+    background-image: url('https://images.unsplash.com/photo-1575511064059-0f0cd1ae9b77?w=1800&q=75&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 3rem 1rem;
+  }
+
+  .vote-page-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(250,247,242,0.9);
+    backdrop-filter: blur(3px);
+  }
+
+  .vote-card {
+    position: relative;
+    z-index: 2;
+    background: white;
+    border: 1px solid var(--sand);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 560px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  }
+
+  .vote-card-header {
+    padding: 2.5rem 2.5rem 2rem;
+    border-bottom: 1px solid var(--sand);
+    background: linear-gradient(135deg, var(--moss), var(--moss-dark));
+    color: white;
+  }
+
+  .vote-card-eyebrow {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-bottom: 0.6rem;
+  }
+
+  .vote-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.85rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+  }
+
+  .vote-card-sub {
+    font-size: 0.85rem;
+    opacity: 0.72;
+    margin-top: 0.5rem;
+  }
+
+  .vote-body {
+    padding: 2rem 2.5rem 2.5rem;
+  }
+
+  .candidates-title {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    margin-bottom: 1rem;
+  }
+
+  .candidate-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .candidate-option {
+    position: relative;
+  }
+
+  .candidate-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .candidate-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border: 1.5px solid var(--sand);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: var(--warm-white);
+  }
+
+  .candidate-label:hover {
+    border-color: var(--moss);
+    background: rgba(122,158,135,0.04);
+  }
+
+  .candidate-option input[type="radio"]:checked + .candidate-label {
+    border-color: var(--moss);
+    background: rgba(122,158,135,0.08);
+    box-shadow: 0 0 0 3px rgba(122,158,135,0.12);
+  }
+
+  .candidate-option input[type="radio"]:checked + .candidate-label .radio-circle {
+    background: var(--moss);
+    border-color: var(--moss);
+  }
+
+  .candidate-option input[type="radio"]:checked + .candidate-label .radio-circle::after {
+    opacity: 1;
+  }
+
+  .radio-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--taupe);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  .radio-circle::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .cand-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--moss), var(--accent-gold));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .cand-name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--charcoal);
+    flex: 1;
+  }
+
+  .submit-vote-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--moss);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .submit-vote-btn:hover {
+    background: var(--moss-dark);
+    box-shadow: 0 8px 24px rgba(92,122,104,0.35);
+    transform: translateY(-2px);
+  }
+
+  .vote-disclaimer {
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--light-gray);
+    margin-top: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+{% endblock %}
+
+{% block vote %}
+<div class="vote-page">
+  <div class="vote-page-overlay"></div>
+
+  <div class="vote-card">
+    <div class="vote-card-header">
+      <p class="vote-card-eyebrow">Secure Voting Portal</p>
+      <h1 class="vote-card-title">Cast Your Vote</h1>
+      <p class="vote-card-sub">Select one candidate below. Your vote is anonymous and cannot be changed.</p>
+    </div>
+
+    <div class="vote-body">
+      <form method="post" action="{% url 'submit_vote' %}">
+        {% csrf_token %}
+        <input type="hidden" name="position_id" value="{{ candidates.0.position_id }}">
+
+        <p class="candidates-title">Choose Your Candidate</p>
+
+        <div class="candidate-options">
+          {% for candidate in candidates %}
+          <div class="candidate-option">
+            <input type="radio" id="cand_{{ candidate.id }}" name="candidates" value="{{ candidate.id }}" required>
+            <label class="candidate-label" for="cand_{{ candidate.id }}">
+              <div class="radio-circle"></div>
+              <div class="cand-avatar">{{ candidate.name|slice:":1"|upper }}</div>
+              <span class="cand-name">{{ candidate.name }}</span>
+            </label>
+          </div>
+          {% endfor %}
+        </div>
+
+        <button type="submit" class="submit-vote-btn">
+          <i class="bi bi-check2-circle"></i>
+          Submit Vote
+        </button>
+      </form>
+
+      <p class="vote-disclaimer">
+        <i class="bi bi-lock-fill"></i>
+        Your vote is encrypted and securely recorded.
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}
