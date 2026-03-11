@@ -12,11 +12,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+from django.core.management.utils import get_random_secret_key
+SECRET_KEY = get_random_secret_key()
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-@!w3q1da)_fk7%pd^cgxoa(min=$rnd4oz5dm#ul&m$dgql#(d'
-
+SECRET_KEY = get_random_secret_key()
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
