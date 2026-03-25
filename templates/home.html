@@ -360,7 +360,7 @@
     <p class="hero-sub">Participate in shaping the leadership of your institution. Every vote is a step toward the change you believe in.</p>
     {% if user.username == 'admin' %}
       <a href="{% url 'adminadd' %}" class="hero-cta cta-primary">
-        <i class="bi bi-plus-lg"></i> Add Position / Candidates
+        <i class="bi bi-plus-lg"></i> Add Position Or Candidates
       </a>
     {% else %}
       {{ button }}
