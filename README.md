@@ -1,13 +1,13 @@
-# 🗳️ PollPoint – DevOps-Based College Voting System
+# ️ PollPoint – DevOps-Based College Voting System
 
-## 📌 Project Overview
+##  Project Overview
 **PollPoint** is a web-based college voting system developed using **Django** and deployed using a complete **DevOps pipeline on AWS**.
 
 This project demonstrates how modern DevOps practices like **CI/CD, cloud deployment, and automated testing** can be integrated to build a **secure, scalable, and efficient voting system**.
 
 ---
 
-## 🎯 Objectives
+##  Objectives
 - Build a secure online voting system for students  
 - Replace manual paper-based voting  
 - Ensure transparency and fairness  
@@ -15,21 +15,21 @@ This project demonstrates how modern DevOps practices like **CI/CD, cloud deploy
 
 ---
 
-## 🚀 Key Features
+##  Key Features
 
-### 👨‍💼 Admin
+###  Admin
 - Add / Edit / Delete positions  
 - Manage candidates  
 - View live voting results  
 
-### 🎓 Student
+###  Student
 - Secure login system  
 - Cast vote (only once)  
 - Anonymous voting system  
 
 ---
 
-## 🛠️ Tech Stack
+## ️ Tech Stack
 
 | Category | Technology |
 |--------|-----------|
@@ -42,18 +42,18 @@ This project demonstrates how modern DevOps practices like **CI/CD, cloud deploy
 
 ---
 
-## ☁️ Deployment
+##  Deployment
 
 - Developed on **AWS Cloud9**
 - Deployed using **AWS Elastic Beanstalk**
 - CI/CD automated using **GitHub Actions**
 
-🔗 **Live Application**  
+ **Live Application**  
 http://poll-point.us-east-1.elasticbeanstalk.com/
 
 ---
 
-## 🔄 CI/CD Pipeline
+##  CI/CD Pipeline
 
 The pipeline is triggered on every push to GitHub:
 
@@ -67,14 +67,14 @@ This ensures **automated, reliable, and error-free deployment**.
 
 ---
 
-## 🧪 Testing
+##  Testing
 
 - Django test suite implemented  
 - All test cases passed successfully  
 - Ensures system reliability  
 
 ---
-## 📁 Project Structure
+##  Project Structure
 
 my-devops-project/
 │── .github/workflows/ # CI/CD pipeline (GitHub Actions)
@@ -91,24 +91,29 @@ my-devops-project/
 
 ---
 
-## 🔗 Key URLs
+##  Key URLs
 
 | Function | URL |
 |--------|-----|
-| Home Page | `/` |
-| Admin Login | `/admin/` |
-| Student Login | `/login/` |
-| Voting Page | `/vote/` |
-| Results Dashboard | `/results/` |
+| Home Page | / |
+| Admin Login | /admin/ |
+| Student Login | /login/ |
+| Signup | /signup/ |
+| Logout | /logout/ |
+| Add Position (Admin) | /adminadd/ |
+| Update Position | /update/<id> |
+| Delete Position | /delete/<id> |
+| Voting Page | /vote/<position_id>/ |
+| Submit Vote | /submit_vote/ |
 
-👉 **Live Application**  
+ **Live Application**  
 http://poll-point.us-east-1.elasticbeanstalk.com/
 
 
 
 ---
 
-## 🔄 CRUD Operations
+## CRUD Operations
 
 - Create → Add positions & candidates  
 - Read → View elections & results  
@@ -127,13 +132,13 @@ http://poll-point.us-east-1.elasticbeanstalk.com/
 
 ---
 
-## 📌 Conclusion
+##  Conclusion
 
 This project shows how **DevOps + Cloud + Django** can be combined to build a **real-world scalable application** with automation, security, and efficiency.
 
 ---
 
-## 👨‍💻 Author
+##  Author
 
 **Manirathnam**  
 DevOps Project – College Voting System  
