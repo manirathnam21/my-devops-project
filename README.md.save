@@ -1,13 +1,14 @@
-# 🗳️ PollPoint – DevOps-Based College Voting System
 
-## 📌 Project Overview
+##  Project Overview
+
 **PollPoint** is a web-based college voting system developed using **Django** and deployed using a complete **DevOps pipeline on AWS**.
 
 This project demonstrates how modern DevOps practices like **CI/CD, cloud deployment, and automated testing** can be integrated to build a **secure, scalable, and efficient voting system**.
 
 ---
 
-## 🎯 Objectives
+##  Objectives
+>>>>>>> ae4bf27 (updated  Readmefile)
 - Build a secure online voting system for students  
 - Replace manual paper-based voting  
 - Ensure transparency and fairness  
@@ -15,21 +16,35 @@ This project demonstrates how modern DevOps practices like **CI/CD, cloud deploy
 
 ---
 
+<<<<<<< HEAD
 ## 🚀 Key Features
 
 ### 👨‍💼 Admin
+=======
+##  Key Features
+
+###  Admin
+>>>>>>> ae4bf27 (updated  Readmefile)
 - Add / Edit / Delete positions  
 - Manage candidates  
 - View live voting results  
 
+<<<<<<< HEAD
 ### 🎓 Student
+=======
+###  Student
+>>>>>>> ae4bf27 (updated  Readmefile)
 - Secure login system  
 - Cast vote (only once)  
 - Anonymous voting system  
 
 ---
 
+<<<<<<< HEAD
 ## 🛠️ Tech Stack
+=======
+## ️ Tech Stack
+>>>>>>> ae4bf27 (updated  Readmefile)
 
 | Category | Technology |
 |--------|-----------|
@@ -42,18 +57,30 @@ This project demonstrates how modern DevOps practices like **CI/CD, cloud deploy
 
 ---
 
+<<<<<<< HEAD
 ## ☁️ Deployment
+=======
+##  Deployment
+>>>>>>> ae4bf27 (updated  Readmefile)
 
 - Developed on **AWS Cloud9**
 - Deployed using **AWS Elastic Beanstalk**
 - CI/CD automated using **GitHub Actions**
 
+<<<<<<< HEAD
 🔗 **Live Application**  
+=======
+ **Live Application**  
+>>>>>>> ae4bf27 (updated  Readmefile)
 http://poll-point.us-east-1.elasticbeanstalk.com/
 
 ---
 
+<<<<<<< HEAD
 ## 🔄 CI/CD Pipeline
+=======
+## CI/CD Pipeline
+>>>>>>> ae4bf27 (updated  Readmefile)
 
 The pipeline is triggered on every push to GitHub:
 
@@ -67,14 +94,22 @@ This ensures **automated, reliable, and error-free deployment**.
 
 ---
 
+<<<<<<< HEAD
 ## 🧪 Testing
+=======
+## Testing
+>>>>>>> ae4bf27 (updated  Readmefile)
 
 - Django test suite implemented  
 - All test cases passed successfully  
 - Ensures system reliability  
 
 ---
+<<<<<<< HEAD
 ## 📁 Project Structure
+=======
+## Project Structure
+>>>>>>> ae4bf27 (updated  Readmefile)
 
 my-devops-project/
 │── .github/workflows/ # CI/CD pipeline (GitHub Actions)
@@ -91,6 +126,7 @@ my-devops-project/
 
 ---
 
+<<<<<<< HEAD
 ## 🔗 Key URLs
 
 | Function | URL |
@@ -102,13 +138,35 @@ my-devops-project/
 | Results Dashboard | `/results/` |
 
 👉 **Live Application**  
+=======
+## Key URLs
+
+| Function | URL |
+|--------|-----|
+| Home Page | / |
+| Admin Login | /admin/ |
+| Student Login | /login/ |
+| Signup | /signup/ |
+| Logout | /logout/ |
+| Add Position (Admin) | /adminadd/ |
+| Update Position | /update/<id> |
+| Delete Position | /delete/<id> |
+| Voting Page | /vote/<position_id>/ |
+| Submit Vote | /submit_vote/ |
+
+ **Live Application**  
+>>>>>>> ae4bf27 (updated  Readmefile)
 http://poll-point.us-east-1.elasticbeanstalk.com/
 
 
 
 ---
 
+<<<<<<< HEAD
 ## 🔄 CRUD Operations
+=======
+##  CRUD Operations
+>>>>>>> ae4bf27 (updated  Readmefile)
 
 - Create → Add positions & candidates  
 - Read → View elections & results  
@@ -127,20 +185,34 @@ http://poll-point.us-east-1.elasticbeanstalk.com/
 
 ---
 
+<<<<<<< HEAD
 ## 📌 Conclusion
+=======
+##  Conclusion
+>>>>>>> ae4bf27 (updated  Readmefile)
 
 This project shows how **DevOps + Cloud + Django** can be combined to build a **real-world scalable application** with automation, security, and efficiency.
 
 ---
 
+<<<<<<< HEAD
 ## 👨‍💻 Author
 
 **Manirathnam**  
+=======
+##  Author
+
+**Manirathnam Gajula**  
+>>>>>>> ae4bf27 (updated  Readmefile)
 DevOps Project – College Voting System  
 
 ---
 
+<<<<<<< HEAD
 ## ⭐ How to Use
+=======
+##  How to Run Locally
+>>>>>>> ae4bf27 (updated  Readmefile)
 
 ```bash
 # Clone the repository
@@ -153,4 +225,8 @@ cd my-devops-project
 pip install -r requirements.txt
 
 # Run server
+<<<<<<< HEAD
 python manage.py runserver
+=======
+python manage.py runserver
+>>>>>>> ae4bf27 (updated  Readm
