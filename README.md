@@ -140,7 +140,7 @@ DevOps Project – College Voting System
 
 ---
 
-## ⭐ How to Use
+## How to Run Locally
 
 ```bash
 # Clone the repository
