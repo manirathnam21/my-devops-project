@@ -74,18 +74,19 @@ This ensures **automated, reliable, and error-free deployment**.
 - Ensures system reliability  
 
 ---
-##  Project Structure
-
+## Project Structure
+```
 my-devops-project/
-│── .github/workflows/ # CI/CD pipeline (GitHub Actions)
-│── voting/ # Main Django app
-│── templates/ # HTML templates
-│── static/ # CSS, JS, images
-│── db.sqlite3 # Database (default)
-│── manage.py # Django entry point
-│── requirements.txt # Project dependencies
-│── django.yml # CI/CD configuration
-│── README.md # Project documentation
+|── .github/workflows/    # CI/CD pipeline (GitHub Actions)
+|── voting/               # Main Django app
+|── templates/            # HTML templates
+|── static/               # CSS, JS, images
+|── db.sqlite3            # Database (default)
+|── manage.py             # Django entry point
+|── requirements.txt      # Project dependencies
+|── django.yml            # CI/CD configuration
+|── README.md             # Project documentation
+```
 
 
 
@@ -140,7 +141,7 @@ This project shows how **DevOps + Cloud + Django** can be combined to build a **
 
 ##  Author
 
-**Manirathnam**  
+**Manirathnam Gajula**  
 DevOps Project – College Voting System  
 
 ---
